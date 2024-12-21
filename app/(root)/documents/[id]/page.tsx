@@ -1,8 +1,24 @@
+import { Editor } from '@/components/editor/Editor'
+import Header from '@/components/Header'
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import React from 'react'
 
 function Document() {
   return (
-    <div>Document</div>
+    <div>
+      <Header>
+        <div className='flex w-fit items-center justify-center gap-2'>
+          <p className='document-title'>This is Title</p>
+        </div>
+        <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+      </Header>
+      <Editor />
+    </div>
   )
 }
 
