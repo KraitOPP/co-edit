@@ -1,11 +1,19 @@
 "use client";
 import { Loader } from '@/components/Loader';
-import { LiveblocksProvider, ClientSideSuspense, RoomProvider } from '@liveblocks/react';
+import { getClerkUsers } from '@/lib/actions/user.actions';
+import { LiveblocksProvider, ClientSideSuspense } from '@liveblocks/react';
 import { ReactNode } from 'react';
 
 const Provider = ({ children }: { children: ReactNode }) => {
     return (
-        <LiveblocksProvider authEndpoint={'/api/liveblocks-auth'}>
+        <LiveblocksProvider 
+            authEndpoint="/api/liveblocks-auth"
+            resolveUsers={async ({userIds}) => {
+                const users = await getClerkUsers({userIds});
+
+                return users;
+            }}
+        >
             <ClientSideSuspense fallback={<Loader />}>
                 {children}
             </ClientSideSuspense>
