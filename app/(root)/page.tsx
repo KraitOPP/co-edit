@@ -1,15 +1,19 @@
 import AddDocumentBtn from '@/components/AddDocumentBtn'
 import Header from '@/components/Header'
+import { getDocuments } from '@/lib/actions/room.actions'
+import { dateConverter } from '@/lib/utils'
 import { SignedIn, UserButton } from '@clerk/nextjs'
 import { currentUser } from '@clerk/nextjs/server'
 import Image from 'next/image'
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import React from 'react'
 
-const  Home = async () => {
+const Home = async () => {
   const clerkUser = await currentUser();
-  if(!clerkUser) redirect('/sign-in');
-  const documents = []
+  if (!clerkUser) redirect('/sign-in');
+  const documents = (await getDocuments(clerkUser.emailAddresses[0].emailAddress)).data;
+  
   return (
     <main className='home-container'>
       <Header className='sticky left-0 top-0' >
@@ -22,16 +26,40 @@ const  Home = async () => {
       </Header>
       <div className=''>
         {documents.length > 0 ? (
-          <div>
-
+          <div className='document-list-container'>
+            <div className='document-list-title flex justify-between gap-5'>
+              <h3 className='text-28-semibold'>All Documents</h3>
+              <AddDocumentBtn
+                userId={clerkUser.id}
+                email={clerkUser.emailAddresses[0].emailAddress}
+              />
+            </div>
+            <ul className='document-ul'>
+                {documents.map(({id, metadata, createdAt}: any)=>(
+                  <li key={id} className='document-list-item'>
+                    <Link href={`/documents/${id}`} className='flex flex-1 items-center gap-4'>
+                      <div className='hidden rounded-md bg-dark-500 p-2 sm:block'>
+                        <Image src='/assets/icons/doc.svg' width={40} height={40} alt='document' />
+                      </div>
+                      <div className='space-y-1'>
+                        <p className='line-clamp-1 text-lg'>
+                          {metadata.title}
+                        </p>
+                        <p className='text-sm font-light text-blue-100'>Created about {dateConverter(createdAt)}</p>
+                      </div>
+                    </Link>
+                    {/*delete button*/}
+                  </li>
+                ))}
+            </ul>
           </div>
         ) : (
           <div className='document-list-empty'>
             <Image src='/assets/icons/doc.svg' width={40} height={40} className='mx-auto' alt='document' />
 
             <AddDocumentBtn
-                userId={clerkUser.id}
-                email={clerkUser.emailAddresses[0].emailAddress}
+              userId={clerkUser.id}
+              email={clerkUser.emailAddresses[0].emailAddress}
             />
           </div>
         )}
