@@ -1,6 +1,5 @@
 'use client';
 
-import { useSelf } from '@liveblocks/react';
 import React, { useState } from 'react'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
 import { Button } from './ui/button';
@@ -8,6 +7,9 @@ import Image from 'next/image';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import UserTypeSelector from './UserTypeSelector';
+import Collaborator from './Collaborator';
+import { updateDocumentAccess } from '@/lib/actions/room.actions';
+import { useSelf } from '@liveblocks/react/suspense';
 
 const ShareModal = ({ roomId, collaborators, creatorId, currentUserType }: ShareDocumentDialogProps) => {
     const user = useSelf();
@@ -19,13 +21,25 @@ const ShareModal = ({ roomId, collaborators, creatorId, currentUserType }: Share
     const [userType, setUserType] = useState<UserType>('viewer');
 
     const shareDocumentHandler = async () => {
-
+        setLoading(true);
+        try {
+            await updateDocumentAccess({
+                roomId,
+                email,
+                userType: userType as UserType,
+                updatedBy: user.info,
+            });
+        } catch (error) {
+            console.error("Error Sharing Document ", error);
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>
-                <Button className='gradient-blue flex h-9 gap-1 px-4' disabled={currentUserType!=='editor'}>
+                <Button className='gradient-blue flex h-9 gap-1 px-4' disabled={currentUserType !== 'editor'}>
                     <Image src='/assets/icons/share.svg' width={20} height={20} alt='share' className='min-w-4 md:size-5' />
                     <p className='mr-1 hidden sm:block'>
                         Share
@@ -46,7 +60,24 @@ const ShareModal = ({ roomId, collaborators, creatorId, currentUserType }: Share
                     <div className='flex flex-1 rounded-md bg-dark-400'>
                         <Input id='email' placeholder='Enter email address' value={email} onChange={(e) => setEmail(e.target.value)} className='share-input' />
                         <UserTypeSelector userType={userType} setUserType={setUserType} />
+                        <Button type='submit' onClick={shareDocumentHandler} className='gradient-blue h-4 gap-1 px-5' disabled={loading}>
+                            {loading ? 'Sending...' : 'Invite'}
+                        </Button>
                     </div>
+                </div>
+                <div className='my-2 space-y-2'>
+                    <ul className='flex flex-col'>
+                        {collaborators.map((collaborator) => (
+                            <Collaborator
+                                key={collaborator.id}
+                                roomId={roomId}
+                                creatorId={creatorId}
+                                email={collaborator.email}
+                                collaborator={collaborator}
+                                user={user.info}
+                            />
+                        ))}
+                    </ul>
                 </div>
             </DialogContent>
         </Dialog>
