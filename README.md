@@ -12,7 +12,7 @@ Co-Edit is your ultimate collaborative real-time editing platform, designed to e
 
 Lexical Editor provides a modern, lightweight, and highly customizable editing environment, perfect for projects of any scale. Whether you're brainstorming, drafting, or refining content, Co-Edit lets you collaborate effortlessly in real time, from anywhere in the world.
 
-Experience the power of collaboration — join **[Co-Edit](https://co-edit-p8j5p6b3x-naveen-patidars-projects.vercel.app/documents/IYm1pilGoK5yvXtig2Aha)** today!
+Experience the power of collaboration — join **[Co-Edit](https://co-edit-p8j5p6b3x-naveen-patidars-projects.vercel.app/)** today!
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
 
@@ -48,4 +48,4 @@ and many more, including code architecture and reusability
 
 ## <a name="links">🔗 Links</a>
 
-- [Live Deploy Link](https://co-edit-p8j5p6b3x-naveen-patidars-projects.vercel.app/documents/IYm1pilGoK5yvXtig2Aha)
+- [Live Deploy Link](https://co-edit-p8j5p6b3x-naveen-patidars-projects.vercel.app/)
