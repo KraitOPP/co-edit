@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 📋 <a name="table">Table of Contents</a>
 
-## Getting Started
+1. 🤖 [Introduction](#introduction)
+2. ⚙️ [Tech Stack](#tech-stack)
+3. 🔋 [Features](#features)
+4. 🔗 [Links](#links)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## <a name="introduction">🤖 Introduction</a>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Co-Edit is your ultimate collaborative real-time editing platform, designed to empower seamless teamwork and creativity. Built with cutting-edge technologies like **Next.js** for a fast and smooth user experience, **Clerk** for secure and hassle-free authentication, and **Liveblocks** to enable real-time activity tracking, Co-Edit ensures you're always connected and in sync with your collaborators.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Lexical Editor provides a modern, lightweight, and highly customizable editing environment, perfect for projects of any scale. Whether you're brainstorming, drafting, or refining content, Co-Edit lets you collaborate effortlessly in real time, from anywhere in the world.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Experience the power of collaboration — join **[Co-Edit](https://co-edit-p8j5p6b3x-naveen-patidars-projects.vercel.app/documents/IYm1pilGoK5yvXtig2Aha)** today!
 
-## Learn More
+## <a name="tech-stack">⚙️ Tech Stack</a>
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js
+- TypeScript
+- Liveblocks
+- Lexical Editor
+- ShadCN
+- Tailwind CSS
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## <a name="features">🔋 Features</a>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+👉 **Authentication**: User authentication using Clerk, ensuring secure sign-in/out and session management.
 
-## Deploy on Vercel
+👉 **Collaborative Text Editor**: Multiple users can edit the same document simultaneously with real-time updates.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+👉 **Documents Management**
+   - **Create Documents**: Users can create new documents, which are automatically saved and listed.
+   - **Delete Documents**: Users can delete documents they own.
+   - **Share Documents**: Users can share documents via email or link with view/edit permissions.
+   - **List Documents**: Display all documents owned or shared with the user, with search and sorting functionalities.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👉 **Comments**: Users can add inline and general comments, with threading for discussions.
+
+👉 **Active Collaborators on Text Editor**: Show active collaborators with real-time presence indicators.
+
+👉 **Notifications**: Notify users of document shares, new comments, and collaborator activities.
+
+👉 **Responsive**: The application is responsive across all devices.
+
+and many more, including code architecture and reusability 
+
+
+## <a name="links">🔗 Links</a>
+
+- [Live Deploy Link](https://co-edit-p8j5p6b3x-naveen-patidars-projects.vercel.app/documents/IYm1pilGoK5yvXtig2Aha)
